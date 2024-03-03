@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { AcademysController } from './academys.controller';
+import { AcademysController } from '../controllers/academys.controller';
 import { AcademysService } from './academys.service';
 
 @Module({
