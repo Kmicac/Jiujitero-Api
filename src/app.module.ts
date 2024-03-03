@@ -1,14 +1,25 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { UsersModule } from './users/users.module';
-import { AcademysModule } from './academys/academys.module';
-import { AthletesModule } from './athletes/athletes.module';
-import { SeedModule } from './seed/seed.module';
+import { AcademysController } from './controllers/academys.controller';
+import { UsersController } from './controllers/users.controller';
+import { AthletesController } from './controllers/athletes.controller';
+import { SeedController } from './controllers/seed.controller';
+import { AcademysService } from './services/academys.service';
+import { UsersService } from './services/users.service';
+import { AthletesService } from './services/athletes.service';
+import { SeedService } from './services/seed.service';
 
 @Module({
-  imports: [UsersModule, AcademysModule, AthletesModule, SeedModule],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [],
+  controllers: [
+    AcademysController, 
+    UsersController, 
+    AthletesController, 
+    SeedController
+  ],
+  providers: [
+    AcademysService, 
+    UsersService, 
+    AthletesService, 
+    SeedService],
 })
 export class AppModule {}
