@@ -1,4 +1,16 @@
 import { Injectable } from '@nestjs/common';
+import { Athlete } from 'src/entities/athlete.entity';
 
 @Injectable()
-export class AthletesService {}
+export class AthletesService {
+
+    private athletes: Athlete[] = [];
+
+    getAllAthletes() {
+        return this.athletes;
+    }
+
+    fillAthleteswithSeed( athletes: Athlete[] ) {
+        this.athletes = athletes;
+    }
+}

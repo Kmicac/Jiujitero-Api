@@ -4,6 +4,12 @@ import { Academy } from "src/entities/academy.entity";
 export const ACADEMYS_SEED: Academy[] = [
     {
         id: uuid(),
+        name: 'Art of Jiu Jitsu',
+        location: 'Costa Mesa, California, USA',
+        professor: 'Rafael Mendes, Guillerme Mendes'
+    },
+    {
+        id: uuid(),
         name: 'Renzo Gracie Academy',
         location: 'New York, New York',
         professor: 'Renzo Gracie',
@@ -78,7 +84,7 @@ export const ACADEMYS_SEED: Academy[] = [
         id: uuid(),
         name: 'Nova União',
         location: 'Brasil, United States, many others',
-        professor: 'André Pederneiras'
+        professor: 'André (Dede) Pederneiras'
     },
     {
         id: uuid(),
