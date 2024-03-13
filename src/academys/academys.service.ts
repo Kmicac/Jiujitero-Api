@@ -9,9 +9,5 @@ export class AcademysService {
     getAll() {
        return this.academys;
     }
-
-    fillAcademyWithSeed( academys: Academy[]) {
-        this.academys = academys;
-    }
 }
 

@@ -1,8 +1,22 @@
-export class Athlete {
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Document } from "mongoose";
 
-    id: string;
+@Schema()
+export class Athlete extends Document {
+    
+    @Prop({
+        type: String,
+        index: true,
+    })
     name: string;
 
-    createdAt: number;
-    updatedAt?: number;
+    @Prop({
+        type: String,
+        index: true,
+        unique: true,
+    })
+    email: string;  
+
 }
+
+export const AthleteSchema = SchemaFactory.createForClass(Athlete);

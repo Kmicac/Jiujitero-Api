@@ -10,7 +10,4 @@ export class AthletesService {
         return this.athletes;
     }
 
-    fillAthleteswithSeed( athletes: Athlete[] ) {
-        this.athletes = athletes;
-    }
 }
