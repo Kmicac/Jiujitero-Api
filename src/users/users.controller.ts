@@ -18,10 +18,10 @@ export class UsersController {
       return this.usersService.getUserById(id);
     }
   
-    @Post()
-    createUser(@Body() newUser: any) {
-      return this.usersService.createUser(newUser);
-    }
+    // @Post()
+    // createUser(@Body() newUser: any) {
+    //   return this.usersService.createUser(newUser);
+    // }
 
   //   @Patch(':id')
   // updateUser(@Param('id') id: string, @Body() updatedUser: any) {
