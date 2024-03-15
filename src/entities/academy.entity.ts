@@ -5,22 +5,22 @@ import { Document } from "mongoose";
 export class Academy extends Document {
 
     @Prop({
-        
+        type: String
     })
     name: string;
 
     @Prop({
-
+        type: String
     })
     location: string;
 
     @Prop({
-
+        type:String
     })
     professor: string;
 
     @Prop({
-
+        type:String
     })
     phone: string;
 

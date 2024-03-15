@@ -10,6 +10,6 @@ export class SeedController {
 
     @Get()
     runSeed() {
-        return this.seedService.populateDB();
+        return this.seedService.runSeed();
     }
 }

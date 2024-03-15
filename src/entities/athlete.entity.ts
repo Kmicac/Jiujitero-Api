@@ -3,17 +3,17 @@ import { Document } from "mongoose";
 
 @Schema()
 export class Athlete extends Document {
+
     
     @Prop({
         type: String,
         index: true,
+        unique: true,
     })
     name: string;
-
+    
     @Prop({
         type: String,
-        index: true,
-        unique: true,
     })
     email: string;  
 
