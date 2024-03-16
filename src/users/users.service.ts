@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from 'src/entities/user.entity';
@@ -8,41 +8,37 @@ export class UsersService {
   constructor(
     @InjectModel(User.name)
     private readonly userModel: Model<User>
-  ) {}
+  ) { }
 
- async getAllUsers() {
+  async createUser(newUser: any): Promise<User> {
+    const user = this.userModel.create(newUser);
+    return user;
+  }
+
+
+  async getAllUsers() {
     return this.userModel.find().exec();
   }
+
 
   async getUserById(id: string) {
     return this.userModel.findById(id);
   }
 
-  // async createUser(newUser: any) {
-  //   const user = { ...newUser };
-  //   this.users.push(user);
-  //   return user;
-  // }
 
-  // updateUser(id: string, updatedUser: any) {
-  //   const index = this.users.findIndex(user => user.id === id);
+  async updateUser(id: string, updatedUser: any): Promise<User> {
+    const index = await this.userModel.findByIdAndUpdate(id, updatedUser);
 
-  //   if (index !== -1) {
-  //     this.users[index] = { ...this.users[index], ...updatedUser };
-  //     return this.users[index];
-  //   }
+    if (!index) throw new NotFoundException('User not Found');
+    return updatedUser;
 
-  //   return null;
-  // }
+  }
 
-  // deleteUser(id: string) {
-  //   const index = this.users.findIndex(user => user.id === id);
+  async deleteUser(id: string): Promise<string> {
+    const index = await this.userModel.findByIdAndDelete(id);
 
-  //   if (index !== -1) {
-  //     this.users.splice(index, 1);
-  //     return true;
-  //   }
+    if (!index) throw new NotFoundException('User not Found');
+    return `User of id: ${id} successfully deleted!`;
 
-  //   return false;
-  // }
+  }
 }
