@@ -5,22 +5,22 @@ import { Document } from "mongoose";
 export class User extends Document {
 
     // id: string;
-    
+
     @Prop({
-        unique:true,
+        unique: true,
         index: true,
         type: String
     })
     name: string;
 
     @Prop({
-        unique:true,
+        unique: true,
         index: true,
     })
     email: string;
 
     @Prop({
-        unique:true,
+        unique: true,
         index: true,
     })
     phone: number;

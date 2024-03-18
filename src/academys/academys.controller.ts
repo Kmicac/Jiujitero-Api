@@ -1,6 +1,8 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { AcademysService } from 'src/academys/academys.service';
 import { Academy } from 'src/entities/academy.entity';
+import { CreateAcademyDto } from './dto/create-academy.dto';
+import { PaginationDto } from 'src/common/pagination.dto';
 
 @Controller('academys')
 export class AcademysController {
@@ -10,16 +12,17 @@ export class AcademysController {
     ) { }
 
     @Post()
-    createAcademy(@Body() newAcademy: any) {
-        return this.academysService.createAcademy(newAcademy);
+    createAcademy(@Body() createAcademyDto: CreateAcademyDto) {
+        return this.academysService.createAcademy(createAcademyDto);
     }
+
     @Get()
-    findAll() {
-        return this.academysService.getAll();
+    findAll(@Query() paginationDto: PaginationDto) {
+        return this.academysService.getAll(paginationDto)
     }
 
     @Get('search')
-    async searchByName(@Query('name') name: string): Promise<Academy[]> {
+     searchByName(@Query('name') name: string): Promise<Academy[]> {
         return this.academysService.searchByName(name);
     }
 

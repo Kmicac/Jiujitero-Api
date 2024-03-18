@@ -20,9 +20,9 @@ export class Academy extends Document {
     professor: string;
 
     @Prop({
-        type:String
+        type: Number
     })
-    phone: string;
+    phone: number;
 
 }
 
