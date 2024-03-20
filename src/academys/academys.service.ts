@@ -1,9 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { Model, mongo } from 'mongoose';
 import { Academy } from 'src/entities/academy.entity';
 import { CreateAcademyDto } from './dto/create-academy.dto';
 import { PaginationDto } from 'src/common/pagination.dto';
+import { errorExceptionHandler } from 'src/common/errorExceptionHandler';
 
 @Injectable()
 export class AcademysService {
@@ -14,8 +15,14 @@ export class AcademysService {
     ) { }
 
     async createAcademy(createAcademyDto: CreateAcademyDto): Promise<Academy> {
-        const academy = this.academyModel.create(createAcademyDto);
-        return academy;
+
+        try {
+            const academy = await this.academyModel.create(createAcademyDto);
+            return academy;
+        } catch (error) {
+            if (error instanceof mongo.MongoError) errorExceptionHandler(error);
+            else throw error;
+        }
     }
 
     async getAll(paginationDto: PaginationDto) {
@@ -23,7 +30,11 @@ export class AcademysService {
 
         return this.academyModel.find()
             .limit(limit)
-            .skip(offset);
+            .skip(offset)
+            .sort({
+                name: 1
+            })
+            .select('-__v')
     }
 
     async searchByName(name: string): Promise<Academy[]> {

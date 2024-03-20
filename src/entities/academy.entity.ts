@@ -5,7 +5,9 @@ import { Document } from "mongoose";
 export class Academy extends Document {
 
     @Prop({
-        type: String
+        type: String,
+        index: true,
+        unique: true,
     })
     name: string;
 
@@ -15,14 +17,16 @@ export class Academy extends Document {
     location: string;
 
     @Prop({
-        type:String
+        type: String,
+        index: true,
+        unique: true,
     })
     professor: string;
 
     @Prop({
-        type: Number
+        type: String,
     })
-    phone: number;
+    phone: string;
 
 }
 
