@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Query } from '@nestjs/common';
 import { AthletesService } from 'src/athletes/athletes.service';
 import { PaginationDto } from 'src/common/pagination.dto';
 import { Athlete } from 'src/entities/athlete.entity';
@@ -24,6 +24,11 @@ export class AthletesController {
     @Get()
     findAll(@Query() paginationDto: PaginationDto) {
         return this.athletesService.getAllAthletes(paginationDto);
+    }
+
+    @Delete(':id')
+    remove(@Param('id') id: string) {
+        return this.athletesService.remove(id);
     }
 
 

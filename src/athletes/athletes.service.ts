@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, mongo } from 'mongoose';
 import { PaginationDto } from 'src/common/pagination.dto';
@@ -41,5 +41,12 @@ export class AthletesService {
             .select('-__v')
     }
 
+    async remove(id: string): Promise<string> {
+        const { deletedCount } = await this.athleteModel.deleteOne({ _id: id })
+        if (deletedCount === 0)
+            throw new BadRequestException(`Academy with id ${id} does not exist`);
+
+        return (`Academy with id ${id} its been deteled`);
+    }
 
 }

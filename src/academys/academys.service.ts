@@ -42,5 +42,13 @@ export class AcademysService {
         return academyName;
     }
 
+    async remove(id: string): Promise<string> {
+        const { deletedCount } = await this.academyModel.deleteOne({ _id: id })
+        if ( deletedCount === 0 ) 
+        throw new BadRequestException( `Academy with id ${id} does not exist`);
+
+        return (`Academy with id ${id} its been deteled`);
+    }
+
 }
 

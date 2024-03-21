@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Query } from '@nestjs/common';
 import { AcademysService } from 'src/academys/academys.service';
 import { Academy } from 'src/entities/academy.entity';
 import { CreateAcademyDto } from './dto/create-academy.dto';
@@ -22,8 +22,13 @@ export class AcademysController {
     }
 
     @Get('search')
-     searchByName(@Query('name') name: string): Promise<Academy[]> {
+    searchByName(@Query('name') name: string): Promise<Academy[]> {
         return this.academysService.searchByName(name);
+    }
+
+    @Delete(':id')
+    remove(@Param('id') id: string) {
+        return this.academysService.remove(id);
     }
 
 }
