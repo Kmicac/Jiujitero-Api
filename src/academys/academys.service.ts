@@ -5,6 +5,7 @@ import { Academy } from 'src/entities/academy.entity';
 import { CreateAcademyDto } from './dto/create-academy.dto';
 import { PaginationDto } from 'src/common/pagination.dto';
 import { errorExceptionHandler } from 'src/common/errorExceptionHandler';
+import { UpdateAcademyDto } from './dto/update-academy.dto';
 
 @Injectable()
 export class AcademysService {
@@ -41,6 +42,11 @@ export class AcademysService {
         const academyName = await this.academyModel.find({ name: { $regex: name, $options: 'i' } })
         return academyName;
     }
+
+    // async update(id: string, updateAcademyDto: UpdateAcademyDto): Promise<Academy> {
+
+    //     return;
+    // }
 
     async remove(id: string): Promise<string> {
         const { deletedCount } = await this.academyModel.deleteOne({ _id: id })

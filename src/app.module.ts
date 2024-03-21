@@ -12,11 +12,11 @@ import { JoiValidationSchema } from './config/joiSchema.validation';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      load: [ EnvConfiguration ],
-      validationSchema: JoiValidationSchema,
+      load:[ EnvConfiguration ],
+      validationSchema: JoiValidationSchema
     }),
 
-    MongooseModule.forRoot( process.env.MONGODB) ,
+    MongooseModule.forRoot(process.env.MONGODB),
     UsersModule, 
     AcademysModule, 
     AthletesModule, 

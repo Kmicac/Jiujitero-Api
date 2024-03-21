@@ -3,6 +3,7 @@ import { AthletesService } from 'src/athletes/athletes.service';
 import { PaginationDto } from 'src/common/pagination.dto';
 import { Athlete } from 'src/entities/athlete.entity';
 import { CreateAthleteDto } from './dto/create-athlete.dto';
+import { ParseMongoIdPipe } from 'src/common/pipes/parse-mongo-id/parse-mongo-id.pipe';
 
 @Controller('athletes')
 export class AthletesController {
@@ -27,7 +28,7 @@ export class AthletesController {
     }
 
     @Delete(':id')
-    remove(@Param('id') id: string) {
+    remove(@Param('id', ParseMongoIdPipe) id: string) {
         return this.athletesService.remove(id);
     }
 
