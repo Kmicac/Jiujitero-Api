@@ -28,10 +28,10 @@ export class AcademysController {
         return this.academysService.searchByName(name);
     }
 
-    // @Patch(':id')
-    // update(@Param('id')id: string, @Body() updateAcademyDto: UpdateAcademyDto) {
-    //     return this.academysService.update(id, updateAcademyDto)
-    // }
+    @Patch(':id')
+    update(@Param('id', ParseMongoIdPipe) id: string, @Body() updateAcademyDto: UpdateAcademyDto) {
+        return this.academysService.update(id, updateAcademyDto)
+    }
 
     @Delete(':id')
     remove(@Param('id', ParseMongoIdPipe) id: string) {

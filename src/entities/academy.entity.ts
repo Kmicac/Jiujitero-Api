@@ -12,7 +12,8 @@ export class Academy extends Document {
     name: string;
 
     @Prop({
-        type: String
+        type: String,
+        index: true,
     })
     location: string;
 

@@ -5,6 +5,7 @@ import { PaginationDto } from 'src/common/pagination.dto';
 import { Athlete } from 'src/entities/athlete.entity';
 import { CreateAthleteDto } from './dto/create-athlete.dto';
 import { errorExceptionHandler } from 'src/common/errorExceptionHandler';
+import { UpdateAthleteDto } from './dto/update-athlete.dto';
 
 @Injectable()
 export class AthletesService {
@@ -41,8 +42,15 @@ export class AthletesService {
             .select('-__v')
     }
 
+    async update(id: string, updateAthleteDto: UpdateAthleteDto) {
+
+        const athlete = await this.athleteModel.findByIdAndUpdate(id, updateAthleteDto);
+
+        return { ...athlete.toJSON(), ...updateAthleteDto };
+    }
+
     async remove(id: string): Promise<string> {
-        const {deletedCount} = await this.athleteModel.deleteOne({ _id: id })
+        const { deletedCount } = await this.athleteModel.deleteOne({ _id: id })
         if (deletedCount === 0)
             throw new BadRequestException(`Athlete with id ${id} does not exist`);
 

@@ -43,10 +43,12 @@ export class AcademysService {
         return academyName;
     }
 
-    // async update(id: string, updateAcademyDto: UpdateAcademyDto): Promise<Academy> {
+    async update(id: string, updateAcademyDto: UpdateAcademyDto) {
 
-    //     return;
-    // }
+        const academy = await this.academyModel.findByIdAndUpdate(id, updateAcademyDto);
+
+        return { ...academy.toJSON(), ...updateAcademyDto };
+    }
 
     async remove(id: string): Promise<string> {
         const { deletedCount } = await this.academyModel.deleteOne({ _id: id })
