@@ -29,6 +29,11 @@ export class Academy extends Document {
     })
     phone: string;
 
+    @Prop({
+        type: String,
+    })
+    image: string;
+
 }
 
 export const AcademySchema = SchemaFactory.createForClass(Academy);

@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
+import { IsNotEmpty, IsNumber, IsOptional, IsString, IsUrl, Matches } from "class-validator";
 
 export class CreateAcademyDto {
 
@@ -17,4 +17,8 @@ export class CreateAcademyDto {
     @IsNumber()
     @IsOptional()
     phone?: number;
+
+    @IsUrl({}, { message: 'Should be a valid URL' })
+    @Matches(/\.(jpeg|jpg|png|gif)$/, { message: 'Must be a URL ending in a valid image extension' })
+    image: string;
 }

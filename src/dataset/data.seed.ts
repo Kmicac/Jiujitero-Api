@@ -3,6 +3,7 @@ interface SeedAcademys {
   location: string;
   professor: string;
   phone: string;
+  image: string;
 }
 
 interface SeedAthletes {
@@ -29,102 +30,119 @@ export const inicialData: SeedData = {
       location: 'Costa Mesa, California, USA',
       professor: 'Rafael Mendes, Guillerme Mendes',
       phone: '0800-555-12345',
+      image: 'https://www.jjddhdhdheu.com.jpeg',
     },
     {
       name: 'Renzo Gracie Academy',
       location: 'New York, New York',
       professor: 'Renzo Gracie',
       phone: '0800-555-12345',
+      image: 'https://www.jjddhdhdheu.com.jpeg',
     },
     {
       name: 'Marcelo Garcia Jiu Jitsu',
       location: 'New York City, United States',
       professor: 'Marcelo Garcia',
       phone: '0800-555-12345',
+      image: 'https://www.jjddhdhdheu.com.jpeg',
     },
     {
       name: 'Atos Jiu Jitsu HQ',
       location: 'San Diego, California',
       professor: 'Andre Galvao',
       phone: '0800-555-12345',
+      image: 'https://www.jjddhdhdheu.com.jpeg',
     },
     {
       name: 'Gracie Barra TX',
       location: 'Houston, Texas',
       professor: "Vinicius 'Draculino' Magalhães",
       phone: '0800-555-12345',
+      image: 'https://www.jjddhdhdheu.com.jpeg',
     },
     {
       name: 'GFTeam',
       location: 'Rio de Janeiro, Brazil',
       professor: 'Roberto Martinez',
       phone: '0800-555-12345',
+      image: 'https://www.jjddhdhdheu.com.jpeg',
     },
     {
       name: 'Roger Gracie Academy',
       location: 'London, England',
       professor: 'Roger Gracie',
       phone: '0800-555-12345',
+      image: 'https://www.jjddhdhdheu.com.jpeg',
     },
     {
       name: 'Tristar Gym',
       location: 'Montreal, Quebec (Canada)',
       professor: 'Firas Zahabi',
       phone: '0800-555-12345',
+      image: 'https://www.jjddhdhdheu.com.jpeg',
     },
     {
       name: 'Six Blades BJJ',
       location: 'Austin, TX',
       professor: 'Xande Ribeiro',
       phone: '0800-555-12345',
+      image: 'https://www.jjddhdhdheu.com.jpeg',
     },
     {
       name: 'Checkmat BJJ HQ',
       location: 'Long Beach, CA',
       professor: 'Leo Vieira',
       phone: '0800-555-12345',
+      image: 'https://www.jjddhdhdheu.com.jpeg',
     },
     {
       name: 'Carlson Gracie Budapest',
       location: 'Budapest, Hungary',
       professor: 'Mihaly Sztraka',
       phone: '0800-555-12345',
+      image: 'https://www.jjddhdhdheu.com.jpeg',
     },
     {
       name: '10th Planet Jiu-Jitsu',
       location: 'Los Angeles, California',
       professor: 'Eddie Bravo',
       phone: '0800-555-12345',
+      image: 'https://www.jjddhdhdheu.com.jpeg',
     },
     {
       name: 'Jiu Jitsu Alliance',
       location: 'United States, Brasil, many others',
       professor: 'Fabio Gurgel',
       phone: '0800-555-12345',
+      image: 'https://www.jjddhdhdheu.com.jpeg',
     },
     {
       name: 'Nova União',
       location: 'Brasil, United States, many others',
       professor: 'André (Dede) Pederneiras',
       phone: '0800-555-12345',
+      image: 'https://www.jjddhdhdheu.com.jpeg',
     },
     {
       name: 'Dream Art',
       location: 'São Paulo, Brasil',
       professor: 'Isaque Bahiense',
       phone: '0800-555-12345',
+      image: 'https://www.jjddhdhdheu.com.jpeg',
     },
     {
       name: 'Cicero Costha International',
       location: 'São Paulo, Brasil',
       professor: 'Cicero Costha',
       phone: '0800-555-12345',
+      image: 'https://www.jjddhdhdheu.com.jpeg',
     },
     {
       name: 'LEAD BJJ',
       location: 'Brasil',
       professor: 'Bruno Bastos',
       phone: '0800-555-12345',
+      image: 'https://www.jjddhdhdheu.com.jpeg',
     }
   ],
 
