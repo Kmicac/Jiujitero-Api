@@ -7,7 +7,6 @@ export class User extends Document {
     // id: string;
 
     @Prop({
-        unique: true,
         index: true,
         type: String
     })
@@ -20,10 +19,26 @@ export class User extends Document {
     email: string;
 
     @Prop({
+        index: true,
+    })
+    passport: string;
+
+    @Prop({
         unique: true,
         index: true,
     })
     phone: number;
+
+    @Prop({
+        type: Boolean,
+    })
+    isActive: boolean;
+
+    @Prop({
+        type: [String],
+        default: ['user'],
+    })
+    role: string[];
 
 }
 

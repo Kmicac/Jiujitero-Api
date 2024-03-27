@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, mongo } from 'mongoose';
 import { PaginationDto } from 'src/common/pagination.dto';
@@ -6,6 +6,7 @@ import { Athlete } from 'src/entities/athlete.entity';
 import { CreateAthleteDto } from './dto/create-athlete.dto';
 import { errorExceptionHandler } from 'src/common/errorExceptionHandler';
 import { UpdateAthleteDto } from './dto/update-athlete.dto';
+import { FilterAthleteDto } from './dto/filter-athlete.dto';
 
 @Injectable()
 export class AthletesService {
@@ -25,21 +26,71 @@ export class AthletesService {
     }
 
     async searchByName(name: string): Promise<Athlete[]> {
-        const athleteName = await this.athleteModel.find({ name: { $regex: name, $options: 'i' } }).exec();
+        const athleteName = await this.athleteModel.find({ name: { $regex: name, $options: 'i' } }).select('-__v').exec();
         return athleteName;
 
     }
 
-    getAllAthletes(paginationDto: PaginationDto) {
-        const { limit = 10, offset = 0 } = paginationDto;
+    async getAllAthletes(props: FilterAthleteDto): Promise<Athlete[]> {
+        try {
+            const QUERY = {};
 
-        return this.athleteModel.find()
+            if (props.name) {
+                QUERY["name"] = { $regex: props.name, $options: 'i' };
+            }
+
+            if (props.lastName) {
+                QUERY["lastName"] = { $regex: props.lastName, $options: 'i' };
+            }
+
+            if (props.team) {
+                QUERY["team"] = { $regex: props.team, $options: 'i' };
+            }
+
+            if (props.email) {
+                QUERY["email"] = { $regex: props.email, $options: 'i' };
+            }
+
+            const result = await this.athleteModel.find(QUERY).select('-__v');
+            if (!result) throw new NotFoundException('Could not find any Athlete');
+            return result;
+
+        } catch (error) {
+            throw new BadRequestException(error.message);
+        }
+
+    }
+
+    async getByPagination(params: FilterAthleteDto) {
+        try {
+            const query = {};
+            if (params.name) {
+                query["name"] = { $regex: params.name, $options: 'i' };
+            }
+
+            if (params.lastName) {
+                query["lastName"] = { $regex: params.lastName, $options: 'i' };
+            }
+
+            if (params.team) {
+                query["team"] = { $regex: params.team, $options: 'i' };
+            }
+
+            const limit = params.limit || 10;
+            const offset = params.offset || 0;
+
+            const data = await this.athleteModel.find(query)
             .limit(limit)
             .skip(offset)
-            .sort({
-                name: 1
-            })
-            .select('-__v')
+            .select('-__v');
+
+            const total = await this.athleteModel.countDocuments(query);
+
+            return { data, total };
+
+        } catch (error) {
+            throw new BadRequestException(error.message);
+        }
     }
 
     async update(id: string, updateAthleteDto: UpdateAthleteDto) {
