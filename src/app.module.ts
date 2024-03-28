@@ -8,6 +8,7 @@ import { AthletesModule } from './athletes/athletes.module';
 import { SeedModule } from './seed/seed.module';
 import { EnvConfiguration } from './config/env.config';
 import { JoiValidationSchema } from './config/joiSchema.validation';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -20,7 +21,8 @@ import { JoiValidationSchema } from './config/joiSchema.validation';
     UsersModule, 
     AcademysModule, 
     AthletesModule, 
-    SeedModule,
+    SeedModule, 
+    AuthModule,
   ],
   controllers: [],
   providers: [],

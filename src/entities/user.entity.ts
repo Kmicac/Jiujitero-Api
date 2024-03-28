@@ -8,6 +8,7 @@ export class User extends Document {
 
     @Prop({
         index: true,
+        unique: true,
         type: String
     })
     name: string;
@@ -24,13 +25,12 @@ export class User extends Document {
     passport: string;
 
     @Prop({
-        unique: true,
         index: true,
     })
     phone: number;
 
     @Prop({
-        type: Boolean,
+        default: true,
     })
     isActive: boolean;
 
