@@ -5,6 +5,8 @@ import { CreateAcademyDto } from './dto/create-academy.dto';
 import { PaginationDto } from 'src/common/pagination.dto';
 import { ParseMongoIdPipe } from 'src/common/pipes/parse-mongo-id/parse-mongo-id.pipe';
 import { UpdateAcademyDto } from './dto/update-academy.dto';
+import { Auth } from 'src/auth/decorator';
+import { ValidRoles } from 'src/auth/interfaces/valid-roles';
 
 @Controller('academys')
 export class AcademysController {
@@ -14,6 +16,7 @@ export class AcademysController {
     ) { }
 
     @Post()
+    @Auth()
     createAcademy(@Body() createAcademyDto: CreateAcademyDto) {
         return this.academysService.createAcademy(createAcademyDto);
     }
@@ -29,11 +32,13 @@ export class AcademysController {
     }
 
     @Patch(':id')
+    @Auth()
     update(@Param('id', ParseMongoIdPipe) id: string, @Body() updateAcademyDto: UpdateAcademyDto) {
         return this.academysService.update(id, updateAcademyDto)
     }
 
     @Delete(':id')
+    @Auth( ValidRoles.admin )
     remove(@Param('id', ParseMongoIdPipe) id: string) {
         return this.academysService.remove(id);
     }

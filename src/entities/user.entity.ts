@@ -4,8 +4,6 @@ import { Document } from "mongoose";
 @Schema()
 export class User extends Document {
 
-    // id: string;
-
     @Prop({
         index: true,
         unique: true,
@@ -40,7 +38,7 @@ export class User extends Document {
         type: [String],
         default: ['user'],
     })
-    role: string[];
+    roles: string[];
 
 }
 

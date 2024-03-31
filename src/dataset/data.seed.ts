@@ -1,3 +1,5 @@
+import * as bcrypt from 'bcrypt';
+
 interface SeedAcademys {
   name: string;
   location: string;
@@ -16,6 +18,7 @@ interface SeedAthletes {
 interface SeedUsers {
   name: string;
   email: string;
+  password: string;
   phone: string;
 }
 
@@ -3746,7 +3749,7 @@ export const inicialData: SeedData = {
   {
     "name": "Kyra",
     "lastName": "Gracie",
-    "team": "",
+    "team": "Gracie Barra",
     "email": "kyra.gracie@unknown.com"
   },
   {
@@ -3764,7 +3767,7 @@ export const inicialData: SeedData = {
   {
     "name": "Kron",
     "lastName": "Gracie",
-    "team": "",
+    "team": "Rickson Gracie Academy",
     "email": "kron.gracie@unknown.com"
   },
   {
@@ -3791,17 +3794,20 @@ export const inicialData: SeedData = {
     {
       name: 'Camilo Pacheco',
       email: 'cpacheco.arg@gmail.com',
-      phone: '+5493513741024',
+      password: bcrypt.hashSync('Abcd0987', 10 ),
+      phone: '5493513741024',
     },
     {
       name: 'Olegario Ortega',
       email: 'olega@gmail.com',
-      phone: '+5492887542014',
+      password: bcrypt.hashSync('Abcd0987', 10 ),
+      phone: '5492887542014',
     },
     {
       name: 'Justo Del Toro',
       email: 'deltoro@gmail.com',
-      phone: '+5493887357229',
+      password: bcrypt.hashSync('Abcd0987', 10 ),
+      phone: '5493887357229',
     },
   ]
 

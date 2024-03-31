@@ -38,7 +38,7 @@ export class UsersService {
   }
 
 
-  async getUserById(id: string) {
+  async getUserById(id: string): Promise<User>  {
     return this.userModel.findById(id);
   }
 

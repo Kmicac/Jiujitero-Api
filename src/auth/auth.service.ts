@@ -19,12 +19,18 @@ export class AuthService {
   ) { }
 
 
+  private getJwtToken(payload: JwtPayload) {
+
+    const token = this.jwtService.sign(payload);
+
+    return token;
+  }
 
   async login(loginUserDto: LoginUserDto) {
 
     const { email, password } = loginUserDto;
 
-    const user = await this.userModel.findOne({ email }).select({ email: 1, password: 1 });
+    const user = await this.userModel.findOne({ email }).select({ id: true, email: true, password: true });
 
     if (!user) {
       throw new UnauthorizedException('Credentials are not valid');
@@ -37,14 +43,15 @@ export class AuthService {
     return {
       email: user.email,
       password: user.password,
-      token: this.getJwtToken({ email: user.email })
+      token: this.getJwtToken({ id: user.id })
     };
   }
 
-  private getJwtToken(payload: JwtPayload) {
-
-    const token = this.jwtService.sign(payload);
-
-    return token;
+  async checkAuthStatus ( user: User) {
+    return {
+      user,
+      token: this.getJwtToken({ id: user.id })
+    };
   }
+  
 }
