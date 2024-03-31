@@ -16,13 +16,15 @@ export class User extends Document {
     @Prop({
         unique: true,
         index: true,
+        set: value => value.toLowerCase()
     })
     email: string;
 
     @Prop({
         index: true,
+        select: false,
     })
-    passport: string;
+    password: string;
 
     @Prop({
         index: true,

@@ -1,26 +1,50 @@
-import { Injectable } from '@nestjs/common';
-import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { JwtService } from '@nestjs/jwt';
+
+import { User } from 'src/entities/user.entity';
+import { LoginUserDto } from './dto/login-user.dto';
+
+import * as bcrypt from 'bcrypt';
+import { JwtPayload } from './interfaces/jwt-payload.interface';
 
 @Injectable()
 export class AuthService {
-  create(createAuthDto: CreateAuthDto) {
-    return 'This action adds a new auth';
+  constructor(
+    @InjectModel(User.name)
+    private userModel: Model<User>,
+
+    private readonly jwtService: JwtService
+  ) { }
+
+
+
+  async login(loginUserDto: LoginUserDto) {
+
+    const { email, password } = loginUserDto;
+
+    const user = await this.userModel.findOne({ email }).select({ email: 1, password: 1 });
+
+    if (!user) {
+      throw new UnauthorizedException('Credentials are not valid');
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid)
+      throw new UnauthorizedException('Credentials are not valid');
+
+    return {
+      email: user.email,
+      password: user.password,
+      token: this.getJwtToken({ email: user.email })
+    };
   }
 
-  findAll() {
-    return `This action returns all auth`;
-  }
+  private getJwtToken(payload: JwtPayload) {
 
-  findOne(id: number) {
-    return `This action returns a #${id} auth`;
-  }
+    const token = this.jwtService.sign(payload);
 
-  update(id: number, updateAuthDto: UpdateAuthDto) {
-    return `This action updates a #${id} auth`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} auth`;
+    return token;
   }
 }

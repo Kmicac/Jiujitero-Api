@@ -16,7 +16,6 @@ import { AuthModule } from './auth/auth.module';
       load:[ EnvConfiguration ],
       validationSchema: JoiValidationSchema
     }),
-
     MongooseModule.forRoot(process.env.MONGODB),
     UsersModule, 
     AcademysModule, 

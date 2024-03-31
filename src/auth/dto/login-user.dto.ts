@@ -1,11 +1,6 @@
-import { IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString, Matches, MaxLength, MinLength } from "class-validator";
+import { IsEmail, IsNotEmpty, IsString, Matches, MaxLength, MinLength } from "class-validator";
 
-export class CreateUserDto {
-
-    @IsNotEmpty()
-    @IsString()
-    @MinLength(2)
-    name: string;
+export class LoginUserDto {
 
     @IsNotEmpty()
     @IsEmail()
@@ -21,9 +16,4 @@ export class CreateUserDto {
         message: 'The password must have a Uppercase, lowercase letter and a number'
     })
     password: string;
-
-    @IsNumber()
-    @IsOptional()
-    phone: number;
-
-};
+}

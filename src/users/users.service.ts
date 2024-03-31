@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 
 import { Model, mongo } from 'mongoose';
@@ -18,13 +18,14 @@ export class UsersService {
   async createUser(createUserDto: CreateUserDto): Promise<User> {
     try {
 
-      const { passport, ...userData } = createUserDto
+      const { password, ...userData } = createUserDto
 
       const user = await this.userModel.create({
         ...userData,
-        passport: bcrypt.hashSync(passport, 10)
+        password: bcrypt.hashSync(password, 10)
       });
       return user;
+
     } catch (error) {
       if (error instanceof mongo.MongoError) errorExceptionHandler(error);
       else throw error;
@@ -51,9 +52,12 @@ export class UsersService {
   }
 
   async deleteUser(id: string): Promise<string> {
-    const index = await this.userModel.findByIdAndDelete(id);
 
-    if (!index) throw new NotFoundException('User not Found');
+    const { deletedCount } = await this.userModel.deleteOne({ _id: id })
+
+    if (deletedCount === 0)
+      throw new BadRequestException(`User with id ${id} does not exist`);
+
     return `User of id: ${id} successfully deleted!`;
 
   }
