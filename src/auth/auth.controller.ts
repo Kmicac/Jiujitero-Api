@@ -26,7 +26,7 @@ export class AuthController {
   }
 
 
-  @Get('private1')
+  @Get('private')
   @Auth(ValidRoles.admin)
   privateRoute(
     @GetUser() user: User,
@@ -37,7 +37,9 @@ export class AuthController {
     };
   }
 
+  // @SetMetadata('roles', ['admin','super-user'])
   // @Get('private')
+  // @RoleProtected( )
   // @UseGuards( AuthGuard() )
   // testingPrivateRoute(
   //   @GetUser() user: User,

@@ -47,7 +47,7 @@ export class UsersService {
     const index = await this.userModel.findByIdAndUpdate(id, updatedUser);
 
     if (!index) throw new NotFoundException('User not Found');
-    return updatedUser;
+    return index;
 
   }
 
