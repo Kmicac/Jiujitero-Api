@@ -1,4 +1,5 @@
 import { Controller, Post, Body, Get, UseGuards } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '@nestjs/passport';
 
 import { AuthService } from './auth.service';
@@ -7,6 +8,7 @@ import { ValidRoles } from './interfaces/valid-roles';
 import { LoginUserDto } from './dto/login-user.dto';
 import { User } from 'src/entities/user.entity';
 
+@ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) { }

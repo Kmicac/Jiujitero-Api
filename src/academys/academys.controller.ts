@@ -1,4 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+
 import { AcademysService } from 'src/academys/academys.service';
 import { Academy } from 'src/entities/academy.entity';
 import { CreateAcademyDto } from './dto/create-academy.dto';
@@ -8,6 +10,7 @@ import { UpdateAcademyDto } from './dto/update-academy.dto';
 import { Auth } from 'src/auth/decorator';
 import { ValidRoles } from 'src/auth/interfaces/valid-roles';
 
+@ApiTags('Academy')
 @Controller('academys')
 export class AcademysController {
 

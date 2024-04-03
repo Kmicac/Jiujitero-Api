@@ -1,10 +1,13 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+
 import { UsersService } from 'src/users/users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { ParseMongoIdPipe } from 'src/common/pipes/parse-mongo-id/parse-mongo-id.pipe';
 import { Auth } from 'src/auth/decorator';
 import { ValidRoles } from 'src/auth/interfaces/valid-roles';
 
+@ApiTags('Users')
 @Controller('users')
 export class UsersController {
 

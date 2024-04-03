@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 
 import { Athlete } from 'src/entities/athlete.entity';
 import { AthletesService } from 'src/athletes/athletes.service';
@@ -10,6 +11,7 @@ import { FilterAthleteDto } from './dto/filter-athlete.dto';
 import { Auth } from 'src/auth/decorator';
 import { ValidRoles } from 'src/auth/interfaces/valid-roles';
 
+@ApiTags('Athletes')
 @Controller('athletes')
 export class AthletesController {
 

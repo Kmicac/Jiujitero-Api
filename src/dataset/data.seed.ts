@@ -35,7 +35,7 @@ export const inicialData: SeedData = {
       location: 'Costa Mesa, California, USA',
       professor: 'Rafael Mendes, Guillerme Mendes',
       phone: '0800-555-12345',
-      image: 'https://www.jjddhdhdheu.com.jpeg',
+      image: 'https://i.imgur.com/xzJryeS.png',
     },
     {
       name: 'Renzo Gracie Academy',
@@ -56,7 +56,7 @@ export const inicialData: SeedData = {
       location: 'San Diego, California',
       professor: 'Andre Galvao',
       phone: '0800-555-12345',
-      image: 'https://www.jjddhdhdheu.com.jpeg',
+      image: 'https://i.imgur.com/a/82LmTjx.png',
     },
     {
       name: 'Gracie Barra TX',
