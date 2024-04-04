@@ -30,6 +30,11 @@ export class User extends Document {
     phone: number;
 
     @Prop({
+        index: true,
+    })
+    image: string;
+
+    @Prop({
         default: true,
     })
     isActive: boolean;
