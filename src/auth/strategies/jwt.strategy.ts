@@ -21,6 +21,8 @@ export class JwtStrategy extends PassportStrategy( Strategy ) {
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
         });
     }
+
+    // Validamos desde el token que posea el Id del usuario requerido y que sea un usuario activo...
    async validate( payload: JwtPayload ): Promise<User> {
 
     const { id } = payload;

@@ -21,6 +21,7 @@ interface SeedUsers {
   password: string;
   phone: string;
   image: string;
+  roles: string[];
 }
 
 interface SeedData {
@@ -5134,21 +5135,24 @@ export const inicialData: SeedData = {
       email: 'cpacheco.arg@gmail.com',
       password: bcrypt.hashSync('Abcd0987', 10),
       phone: '5493513741024',
-      image: 'https://i.imgur.com/WIG66Ct.png'
+      image: 'https://i.imgur.com/WIG66Ct.png',
+      roles: ['admin']
     },
     {
       name: 'Olegario Ortega',
       email: 'olega@gmail.com',
       password: bcrypt.hashSync('Abcd0987', 10),
       phone: '5492887542014',
-      image: 'https://i.imgur.com/B7AQyzo.png'
+      image: 'https://i.imgur.com/B7AQyzo.png',
+      roles: ['super-user']
     },
     {
       name: 'Justo Del Toro',
       email: 'deltoro@gmail.com',
       password: bcrypt.hashSync('Abcd0987', 10),
       phone: '5493887357229',
-      image: 'https://i.imgur.com/9Ph8ISm.jpg'
+      image: 'https://i.imgur.com/9Ph8ISm.jpg',
+      roles: ['user']
     },
   ]
 

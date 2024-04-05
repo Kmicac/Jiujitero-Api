@@ -9,6 +9,8 @@ import { LoginUserDto } from './dto/login-user.dto';
 import * as bcrypt from 'bcrypt';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
 
+const EXPIRE_TIME = 8 * 60 * 60 * 1000;
+
 @Injectable()
 export class AuthService {
   constructor(
@@ -19,12 +21,6 @@ export class AuthService {
   ) { }
 
 
-  private getJwtToken(payload: JwtPayload) {
-
-    const token = this.jwtService.sign(payload);
-
-    return token;
-  }
 
   async login(loginUserDto: LoginUserDto) {
 
@@ -47,11 +43,21 @@ export class AuthService {
     };
   }
 
-  async checkAuthStatus ( user: User) {
+// Metodo para revalidar u obtener nuevo token junto con la info del usuario en caso de que perdamos session o solo necesitemos uno nuevo.
+  async checkAuthStatus(user: User) {
     return {
       user,
-      token: this.getJwtToken({ id: user.id })
+      token: this.getJwtToken({ id: user.id }),
+      expiresIn: new Date().setTime(EXPIRE_TIME),
     };
   }
-  
+
+
+  private getJwtToken(payload: JwtPayload) {
+
+    const token = this.jwtService.sign(payload);
+
+    return token;
+  }
+
 }
