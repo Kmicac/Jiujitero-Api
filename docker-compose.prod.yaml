@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  jiujiteroapp:
+    depends_on:
+      - db
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: jiujitero-docker
+    container_name: jiujiteroapp
+    restart: always 
+    ports:
+      - "${PORT}:${PORT}"
+    # working_dir: /var/www/jiujitero
+    environment:
+      MONGODB: ${MONGODB}
+      PORT: ${PORT}
+      DEFAULT_LIMIT: ${DEFAULT_LIMIT}
+      JWT_SECRET: ${JWT_SECRET} 
+      JWT_EXPIRATION: ${JWT_EXPIRATION}
+    # volumes:
+    #   - ./:/var/www/jiujitero
+
+
+  db:
+    image: mongo:5
+    container_name: mongo-jiujitero
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGODB_DATABASE: jiujitero-api
+    # volumes:
+    # - ./mongo:/data/bd    
