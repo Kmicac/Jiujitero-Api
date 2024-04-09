@@ -41,3 +41,10 @@ http://localhost:3001/api/v1/seed
 *Nest
 
 *MongoDB
+
+9. Construir contenedores app 
+
+## Build 
+```
+docker-compose -f docker-compose.prod.yaml up --build
+```

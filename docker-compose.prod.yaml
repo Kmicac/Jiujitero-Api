@@ -31,5 +31,5 @@ services:
       - 27017:27017
     environment:
       MONGODB_DATABASE: jiujitero-api
-    # volumes:
-    # - ./mongo:/data/bd    
+    volumes:
+    - ./mongo:/data/bd    
