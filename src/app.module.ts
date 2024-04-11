@@ -16,7 +16,9 @@ import { AuthModule } from './auth/auth.module';
       load:[ EnvConfiguration ],
       validationSchema: JoiValidationSchema
     }),
-    MongooseModule.forRoot(process.env.MONGODB),
+    MongooseModule.forRoot(process.env.MONGODB, {
+      dbName: 'jiujitsu-api'
+    }),
     UsersModule, 
     AcademysModule, 
     AthletesModule, 
